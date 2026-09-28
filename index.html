@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Первое агенство. Дизайн интерьеров, Владивосток</title>
+<meta name="description" content="Первое агенство: дизайн интерьеров во Владивостоке, ул. Крыгина, 105/1. Телефон +7 (914) 681-30-05.">
+<meta name="theme-color" content="#100904">
+<script>
+(function(){
+  var d=document.documentElement;
+  try{var t=localStorage.getItem('pa-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t)}catch(e){}
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('pre')}
+})();
+</script>
+<style>html.pre,html.pre body{overflow:hidden}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&subset=cyrillic,cyrillic-ext&display=swap" rel="stylesheet">
+<style>
+/* ORYZO-style tokens. Dark is the default look; light is the warm inversion, switched manually. */
+:root{
+  --bg:#100904;--bg-alt:#1a0f07;--ink:#ffedd7;--ink-soft:#d9c6ad;
+  --surface:#382416;--on-surface:#ffedd7;
+  --line:#40372e;--line-strong:#6c5f51;--ember:#dc5000;--ember-rgb:220,80,0;--ink-rgb:255,237,215;
+  --font:'Onest',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --r-card:12px;--r-pill:36px;--r-ghost:22.5px;
+}
+:root[data-theme="light"]{
+  --bg:#ffedd7;--bg-alt:#f7dfc0;--ink:#100904;--ink-soft:#4a3a2c;
+  --surface:#100904;--on-surface:#ffedd7;
+  --line:#c9ad8a;--line-strong:#8a7358;--ember:#b13d00;--ember-rgb:177,61,0;--ink-rgb:16,9,4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scrollbar-color:var(--line-strong) var(--bg-alt);scrollbar-width:thin;-webkit-text-size-adjust:100%}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--bg-alt)}
+::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:99px;border:3px solid var(--bg-alt);background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:var(--ember);background-clip:padding-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:400;font-feature-settings:"ss01" on;line-height:1.4;overflow-x:hidden;transition:background .3s ease,color .3s ease}
+img{display:block;max-width:100%}
+a{color:inherit}
+.up{text-transform:uppercase;font-weight:500;letter-spacing:0}
+.wrap{width:100%;max-width:1400px;margin:0 auto;padding:0 24px}
+.dash{border:0;border-top:1px dashed var(--line-strong)}
+.placeholder{background:rgba(var(--ember-rgb),.16);border-radius:4px;padding:0 4px}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:500 13px/1 var(--font);text-transform:uppercase;text-decoration:none;white-space:nowrap;cursor:pointer;border:1px solid transparent;position:relative;overflow:hidden;transition:transform .2s cubic-bezier(.22,.9,.3,1),background .25s ease,color .25s ease,border-color .25s ease}
+.btn:active{transform:scale(.96)!important}
+.btn-fill{background:var(--surface);color:var(--on-surface);border-radius:var(--r-pill);padding:17px 28px}
+.btn-fill:hover{background:var(--ink);color:var(--bg)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink);border-radius:var(--r-ghost);padding:10px 18px}
+.btn-ghost:hover{background:var(--ink);color:var(--bg)}
+.burst-dot{position:absolute;width:5px;height:5px;border-radius:50%;background:currentColor;pointer-events:none;transform:translate(-50%,-50%);animation:burstOut .55s ease-out forwards}
+@keyframes burstOut{to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(0);opacity:0}}
+
+/* floating header (fixed, out of flow) */
+header.site{position:fixed;top:14px;left:0;right:0;z-index:40;pointer-events:none}
+.nav-row{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:62px;padding:0 10px 0 20px;border:1px solid var(--line);border-radius:var(--r-pill);background:color-mix(in srgb,var(--bg) 72%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:border-color .3s ease,background .3s ease}
+header.site.is-scrolled .nav-row{border-color:var(--line-strong);background:color-mix(in srgb,var(--bg) 90%,transparent)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:13px;flex-shrink:0}
+.brand svg{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;gap:28px;list-style:none;font-size:12px}
+.nav-links a{text-decoration:none;padding:6px 0;border-bottom:1px dashed transparent;transition:border-color .2s ease}
+.nav-links a:hover,.nav-links a.active{border-bottom-color:var(--ink)}
+.header-actions{display:flex;align-items:center;gap:8px}
+.theme-toggle{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:background .2s ease}
+.theme-toggle:hover{background:var(--surface);color:var(--on-surface)}
+.theme-toggle svg{width:18px;height:18px}
+.theme-toggle .i-sun{display:none}
+.theme-toggle.is-dark .i-sun{display:block}
+.theme-toggle.is-dark .i-moon{display:none}
+.tel-label{font-variant-numeric:tabular-nums}
+
+/* hero */
+.hero{min-height:100dvh;padding:112px 0 48px;display:flex;align-items:stretch;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:stretch}
+.hero-copy{display:flex;flex-direction:column;justify-content:space-between;gap:32px;padding:8px 0}
+.hero-tag{font-size:12px;max-width:34ch}
+.hero h1{font-weight:500;text-transform:uppercase;line-height:.9;font-size:clamp(2.35rem,10.5vw,7.6rem);text-wrap:balance;letter-spacing:0}
+.hero-sub{font-size:clamp(1.05rem,2.2vw,1.55rem);line-height:1.26;max-width:22em;color:var(--ink-soft)}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.hero-photo{position:relative;border-radius:var(--r-card);overflow:hidden;min-height:420px;background:var(--bg-alt);border:1px solid var(--line)}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.hero-card{position:absolute;left:18px;right:18px;bottom:18px;border-radius:var(--r-card);padding:18px 20px;background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--line-strong)}
+.hero-card p.up{font-size:12px;line-height:1.2;margin-bottom:12px}
+.hero-card .dash{margin-bottom:12px}
+.hero-card span.credit{font-size:13px;line-height:1.3;display:block}
+.stagger{animation:rise .9s cubic-bezier(.16,1,.3,1) backwards}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.pre .stagger{animation:none;opacity:0}
+
+/* scroll progress, vertical, in percent */
+.progress{position:fixed;right:5px;top:50%;transform:translateY(-50%);z-index:45;display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none}
+.progress b{font-weight:500;font-size:11px;letter-spacing:.02em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.progress .rail{position:relative;width:2px;height:min(28vh,220px);background:var(--line);border-radius:2px;overflow:hidden}
+.progress .rail i{position:absolute;left:0;top:0;width:100%;height:100%;background:var(--ember);transform-origin:top;transform:scaleY(var(--p,0))}
+
+/* preloader: blueprint drawing, after ORYZO */
+#loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-items:center;transition:transform 1s cubic-bezier(.77,0,.18,1);animation:loaderFail 0s linear 7s forwards}
+@keyframes loaderFail{to{visibility:hidden}}
+#loader.done{transform:translateY(-100%)}
+#loader svg{width:min(70vw,300px);height:auto;overflow:visible}
+#loader .g{stroke:var(--line-strong);stroke-width:.6;stroke-dasharray:3 4;fill:none;opacity:.7}
+#loader .c{fill:none;stroke:var(--ink);stroke-width:1;stroke-dasharray:2 4;stroke-linecap:round}
+#loader .h{stroke:var(--ember);stroke-width:1.6;stroke-linecap:round;fill:none}
+#loader .d{fill:var(--ember)}
+#loader .draw{stroke-dashoffset:var(--len,400);animation:drawIn 1.5s cubic-bezier(.65,0,.35,1) forwards}
+@keyframes drawIn{to{stroke-dashoffset:0}}
+#loader .pop{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:popIn .5s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes popIn{to{transform:scale(1)}}
+#loader .mark{color:var(--ink);opacity:0;animation:fadeIn .6s ease .9s forwards}
+@keyframes fadeIn{to{opacity:1}}
+#loader .pct{position:absolute;left:24px;bottom:22px;font-weight:500;font-size:12px;text-transform:uppercase;display:flex;gap:12px;align-items:baseline}
+#loader .pct b{font-size:clamp(2.4rem,7vw,4rem);line-height:.9;font-weight:500;font-variant-numeric:tabular-nums}
+#loader .name{position:absolute;right:24px;bottom:26px;font-size:12px;text-transform:uppercase;font-weight:500}
+
+/* hero blueprint backdrop and cursor glow */
+.hero-blueprint{position:absolute;left:-4%;top:50%;width:min(64vw,700px);aspect-ratio:1;transform:translate(var(--px,0px),calc(-50% + var(--py,0px)));pointer-events:none;z-index:0;opacity:.55}
+.hero-blueprint svg{width:100%;height:100%;overflow:visible}
+.hero-blueprint .spin{transform-origin:center;animation:spin 90s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-blueprint circle.c1,.hero-blueprint circle.c2{fill:none;stroke:var(--line-strong);stroke-width:.8;stroke-dasharray:2 5}
+.hero-blueprint .guide{stroke:var(--line);stroke-width:.6;stroke-dasharray:3 5}
+.hero-blueprint .dot{fill:var(--ember)}
+.hero-glow{position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(420px circle at var(--gx,30%) var(--gy,40%),rgba(var(--ember-rgb),.13),transparent 65%)}
+.hero .wrap{position:relative;z-index:1}
+
+/* hero slider */
+.hero-photo{isolation:isolate}
+.slides{position:absolute;inset:0;overflow:hidden}
+.slide{position:absolute;inset:0;overflow:hidden;background:var(--bg-alt)}
+.slide img{position:absolute;inset:-4%;width:108%;height:108%;max-width:none;object-fit:cover;transform:scale(1.02);will-change:transform}
+.slide:not(:first-child){clip-path:inset(100% 0 0 0)}
+.stories{position:absolute;top:16px;left:18px;right:18px;display:flex;gap:6px;z-index:3}
+.stories button{flex:1;height:14px;background:none;border:0;cursor:pointer;position:relative;padding:0}
+.stories button::before{content:'';position:absolute;left:0;right:0;top:6px;height:2px;border-radius:2px;background:rgba(255,237,215,.32)}
+.stories button i{position:absolute;left:0;top:6px;height:2px;border-radius:2px;background:#ffedd7;width:100%;transform:scaleX(0);transform-origin:left}
+.hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(16,9,4,.35),transparent 30%,transparent 55%,rgba(16,9,4,.35));pointer-events:none;z-index:1}
+.hero-card{z-index:3}
+
+/* letter split */
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.04em 0 .1em;margin:-.04em 0 -.1em}
+.split .l{display:inline-block;transform:translateY(112%);transition:transform 1s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i) * 38ms)}
+.hero h1.split .l{transition-delay:calc(var(--i) * 55ms + .15s)}
+html.go .hero h1.split .l,.split.in-view .l{transform:none}
+.nosplit .split .l{transform:none}
+
+/* staggered entrances */
+.svc-grid.in-view .card{animation:cardIn .9s cubic-bezier(.16,1,.3,1) backwards}
+.svc-grid.in-view .card:nth-child(2){animation-delay:.08s}.svc-grid.in-view .card:nth-child(3){animation-delay:.16s}.svc-grid.in-view .card:nth-child(4){animation-delay:.24s}.svc-grid.in-view .card:nth-child(5){animation-delay:.32s}.svc-grid.in-view .card:nth-child(6){animation-delay:.4s}
+@keyframes cardIn{from{opacity:0;transform:translateX(80px) rotate(2deg)}to{opacity:1;transform:none}}
+.gal.in-view .shot{animation:shotIn 1.2s cubic-bezier(.77,0,.18,1) backwards}
+.gal.in-view .shot:nth-child(2){animation-delay:.1s}.gal.in-view .shot:nth-child(3){animation-delay:.2s}.gal.in-view .shot:nth-child(4){animation-delay:.3s}.gal.in-view .shot:nth-child(5){animation-delay:.4s}
+@keyframes shotIn{from{clip-path:inset(0 0 0 100%);}to{clip-path:inset(0)}}
+.steps li{position:relative}
+.steps li::after{content:'';position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.16,1,.3,1) .2s}
+.steps li.in-view::after{transform:scaleX(1)}
+.btn-fill::after{content:'';position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,237,215,.28),transparent);transform:skewX(-20deg);transition:left .7s ease}
+.btn-fill:hover::after{left:130%}
+
+/* marquee (single on the page) */
+.marquee{border-top:1px dashed var(--line-strong);border-bottom:1px dashed var(--line-strong);overflow:hidden;padding:20px 0}
+.marquee-track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-size:clamp(1.3rem,3.4vw,2.6rem);line-height:1;padding-right:2.2rem;white-space:nowrap}
+.marquee-track span::after{content:"/";padding-left:2.2rem;color:var(--line-strong)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* reveal three-column */
+.reveal{min-height:100dvh;background:var(--bg-alt);display:flex;align-items:center;padding:96px 0}
+.reveal .wrap{display:grid;grid-template-columns:1fr minmax(0,.9fr) 1fr;gap:18px;align-items:center}
+.reveal h2{font-size:clamp(1.9rem,4.4vw,3.2rem);line-height:.9;font-weight:500;text-transform:uppercase}
+.reveal p{font-size:clamp(1.15rem,2.2vw,1.8rem);line-height:1.26}
+.reveal figure{border-radius:var(--r-card);overflow:hidden;aspect-ratio:3/4;background:var(--bg);border:1px solid var(--line)}
+.reveal figure img{width:100%;height:100%;object-fit:cover}
+
+/* generic sections */
+section.block{padding:120px 0}
+.sec-head{margin-bottom:48px;max-width:760px}
+.sec-head h2{font-size:clamp(1.9rem,5vw,3.6rem);line-height:.9;font-weight:500;text-transform:uppercase;text-wrap:balance}
+.sec-head p{margin-top:20px;font-size:1.15rem;line-height:1.35;color:var(--ink-soft);max-width:52ch}
+
+/* services strip with spotlight tilt */
+.scroll-strip{display:flex;gap:18px;overflow-x:auto;padding:6px 6px 18px;scroll-snap-type:x proximity;cursor:grab;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none}
+.scroll-strip::-webkit-scrollbar{display:none}
+.scroll-strip:active{cursor:grabbing}
+.scroll-strip>*{flex:0 0 auto;scroll-snap-align:start}
+.scroll-track{position:relative;height:3px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:6px}
+.scroll-thumb{position:absolute;top:0;left:0;height:100%;border-radius:99px;background:var(--ink);transition:transform .08s linear}
+.svc-grid .card{width:min(78vw,330px);min-height:340px;border:1px solid var(--line);border-radius:var(--r-card);padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;background:var(--bg);transition:transform .35s cubic-bezier(.22,.9,.3,1),opacity .35s ease,border-color .3s ease}
+.svc-grid .card::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s ease;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(var(--ember-rgb),.16),transparent 68%)}
+.svc-grid .card.is-hot::before{opacity:1}
+.svc-grid .card.is-hot{border-color:var(--line-strong)}
+.svc-grid.is-active .card:not(.is-hot){opacity:.62}
+.card h3{font-size:clamp(1.3rem,2.4vw,1.7rem);line-height:.95;font-weight:500;text-transform:uppercase;position:relative}
+.card p{font-size:1.02rem;line-height:1.35;color:var(--ink-soft);position:relative}
+.card .ico{width:44px;height:44px;position:relative}
+.card .ico svg{width:100%;height:100%;fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:180;stroke-dashoffset:180;transition:stroke-dashoffset 1.4s cubic-bezier(.22,1,.36,1)}
+.in-view .card .ico svg{stroke-dashoffset:0}
+.svc-note{margin-top:20px;font-size:13px;color:var(--ink-soft)}
+
+/* gallery */
+.gallery-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.gallery-top .sec-head{margin-bottom:0}
+.stat{display:flex;align-items:baseline;gap:14px}
+.stat b{font-weight:500;font-size:clamp(3.4rem,9vw,6.4rem);line-height:.9;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;max-width:16ch;line-height:1.2}
+.gal .shot{width:min(72vw,360px);aspect-ratio:3/4;border-radius:var(--r-card);overflow:hidden;background:var(--bg-alt);border:1px solid var(--line);position:relative}
+.gal .shot.wide{width:min(86vw,560px);aspect-ratio:4/3}
+.gal .shot img{width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.gal .shot:hover img{transform:scale(1.04)}
+
+/* process */
+.process{background:var(--bg-alt)}
+.steps{list-style:none;border-top:1px dashed var(--line-strong)}
+.steps li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px;padding:36px 0;border-bottom:1px dashed var(--line-strong);align-items:baseline}
+.steps h3{font-size:clamp(1.8rem,4.6vw,3.4rem);line-height:.9;font-weight:500;text-transform:uppercase}
+.steps p{font-size:clamp(1.05rem,2vw,1.4rem);line-height:1.3;color:var(--ink-soft)}
+
+/* contacts + map */
+.contact-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px;align-items:stretch}
+.contact-info dl{display:grid;gap:0;margin-bottom:32px}
+.contact-info dl div{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:18px 0;border-bottom:1px dashed var(--line-strong)}
+.contact-info dl div:first-child{border-top:1px dashed var(--line-strong)}
+.contact-info dt{font-size:12px;color:var(--ink-soft);padding-top:4px}
+.contact-info dd{font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.25}
+.contact-info dd a{text-decoration:none;border-bottom:1px solid var(--line-strong)}
+form.lead{display:grid;gap:22px;margin-top:8px}
+.field{display:grid;gap:8px}
+.field label{font-size:12px}
+.field input,.field textarea{background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;color:var(--ink);font:400 1.1rem/1.4 var(--font);padding:8px 2px;width:100%;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-bottom-color:var(--ember);border-bottom-width:2px}
+.field small{font-size:13px;color:var(--ink-soft)}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.4;color:var(--ink-soft)}
+.consent input{margin-top:3px;width:18px;height:18px;accent-color:var(--ink);flex-shrink:0}
+.consent a{color:var(--ink)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-status{font-size:15px;min-height:1.4em}
+.form-status.ok{color:var(--ink)}
+.form-status.err{color:var(--ember)}
+.map-col{display:flex;flex-direction:column;gap:12px;min-height:520px}
+.map-frame{flex:1;min-height:460px;border:1px solid var(--line-strong);border-radius:var(--r-card);background:var(--bg-alt);overflow:hidden;position:relative}
+.map-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map-caption{font-size:14px;color:var(--ink-soft)}
+.map-caption a{color:var(--ink)}
+
+/* footer */
+footer.site{border-top:1px dashed var(--line-strong);padding:48px 0 56px}
+.foot-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:start}
+.foot-brand{display:flex;align-items:center;gap:12px;font-size:clamp(1.3rem,3vw,2rem);line-height:.9}
+.foot-brand svg{width:44px;height:44px}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap;font-size:12px}
+.disclaimer{margin-top:28px;padding-top:20px;border-top:1px dashed var(--line-strong);font-size:13px;line-height:1.5;color:var(--ink-soft);max-width:80ch}
+.disclaimer .credit{color:var(--ember);text-transform:uppercase;font-weight:500;font-size:11px;display:block;margin-bottom:6px}
+
+/* in-view reveal driven by IntersectionObserver */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.rv.in-view{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+
+@media (max-width:1024px){
+  .nav-links{display:none}
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-photo{min-height:380px}
+  .reveal .wrap{grid-template-columns:1fr}
+  .reveal figure{max-width:420px;aspect-ratio:4/5}
+  .contact-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  header.site{top:10px}
+  .nav-row{height:56px;padding:0 8px 0 14px}
+  .brand span.brand-name{display:none}
+  .tel-label{display:none}
+  .btn-ghost.tel{padding:10px 14px}
+  .hero{padding-top:92px}
+  section.block{padding:80px 0}
+  .steps li{grid-template-columns:1fr;gap:12px;padding:28px 0}
+  .contact-info dl div{grid-template-columns:1fr;gap:4px}
+  .btn-fill{padding:16px 22px}
+}
+@media (max-width:400px){
+  .btn-fill{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .marquee-track{animation:none}
+  .stagger{animation:none}
+  .rv{opacity:1;transform:none;transition:none}
+  .card .ico svg{stroke-dashoffset:0;transition:none}
+  .slide img{transform:none!important}
+  .hero-blueprint .spin{animation:none}
+  .split .l{transform:none;transition:none}
+  #loader{display:none}
+  .svc-grid.in-view .card,.gal.in-view .shot{animation:none}
+  .steps li::after{transition:none}
+}
+@media (max-width:640px){
+  #loader .pct{left:16px;bottom:18px}#loader .name{right:16px;bottom:22px}
+  .hero-blueprint{width:120vw;left:-30%;opacity:.35}
+  .progress{top:auto;bottom:14px;right:14px;transform:none;flex-direction:row;gap:8px;padding:8px 12px;border-radius:99px;background:color-mix(in srgb,var(--bg) 85%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line-strong)}
+  .progress .rail{width:34px;height:2px}
+  .progress .rail i{transform-origin:left;transform:scaleX(var(--p,0))}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M15 14.5 L21.5 10.5 V29.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M14 29.5 H29" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1 3.2"/>
+  </symbol>
+</svg>
+
+<div id="loader" aria-hidden="true">
+  <svg viewBox="-150 -150 300 300">
+    <line class="g draw" style="--len:300" x1="-140" y1="-45" x2="140" y2="-45"/><line class="g draw" style="--len:300" x1="-140" y1="45" x2="140" y2="45"/>
+    <line class="g draw" style="--len:300" x1="-45" y1="-140" x2="-45" y2="140"/><line class="g draw" style="--len:300" x1="45" y1="-140" x2="45" y2="140"/>
+    <circle class="c draw" style="--len:600" r="95"/><circle class="c draw" style="--len:330" r="52"/>
+    <g class="h"><path class="draw" style="--len:60" d="M-30 -95 H30"/><path class="draw" style="--len:60" d="M-30 95 H30"/><path class="draw" style="--len:60" d="M-95 -30 V30"/><path class="draw" style="--len:60" d="M95 -30 V30"/></g>
+    <circle class="d pop" style="animation-delay:.5s" r="3" cx="0" cy="-95"/><circle class="d pop" style="animation-delay:.6s" r="3" cx="0" cy="95"/><circle class="d pop" style="animation-delay:.7s" r="3" cx="-95" cy="0"/><circle class="d pop" style="animation-delay:.8s" r="3" cx="95" cy="0"/>
+    <g class="mark" transform="translate(-22 -22) scale(1.1)"><use href="#logo" width="40" height="40"/></g>
+  </svg>
+  <div class="pct"><b id="pct">0</b><span>%</span></div>
+  <div class="name">Первое агенство</div>
+</div>
+
+<div class="progress" aria-hidden="true"><b id="progNum">0%</b><div class="rail"><i id="progFill"></i></div></div>
+
+<header class="site" id="siteHeader">
+  <div class="wrap">
+    <div class="nav-row">
+      <a class="brand up" href="#top" aria-label="Первое агенство, на главную">
+        <svg><use href="#logo"/></svg><span class="brand-name">Первое агенство</span>
+      </a>
+      <ul class="nav-links up">
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#process">Работа</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить тему">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <a class="btn btn-ghost tel up" href="tel:+79146813005" aria-label="Позвонить +7 914 681-30-05">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+          <span class="tel-label">+7 (914) 681-30-05</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" id="hero">
+  <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
+  <div class="hero-blueprint" id="heroBp" aria-hidden="true">
+    <svg viewBox="-150 -150 300 300"><g class="spin">
+      <circle class="c1" r="140"/><circle class="c2" r="90"/>
+      <line class="guide" x1="-150" y1="0" x2="150" y2="0"/><line class="guide" x1="0" y1="-150" x2="0" y2="150"/>
+      <circle class="dot" r="3" cx="0" cy="-140"/><circle class="dot" r="3" cx="140" cy="0"/><circle class="dot" r="3" cx="0" cy="90"/><circle class="dot" r="3" cx="-90" cy="0"/>
+    </g></svg>
+  </div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="hero-tag up stagger" style="animation-delay:.05s">Дизайн интерьеров, Владивосток</p>
+      <div>
+        <h1 class="split" data-hero>Первое агенство</h1>
+        <p class="hero-sub stagger" style="animation-delay:.3s;margin-top:24px">Проектируем интерьеры, в которых удобно жить каждый день.</p>
+      </div>
+      <div class="hero-cta stagger" style="animation-delay:.45s">
+        <a class="btn btn-fill up" href="#contacts" id="heroCta">Обсудить проект</a>
+      </div>
+    </div>
+    <div class="hero-photo stagger" id="heroSlider" style="animation-delay:.25s">
+      <div class="slides" id="slides">
+        <figure class="slide"><img src="https://avatars.mds.yandex.net/get-altay/16500335/2a0000019b164182cf32f8a31ed696338e25/XXL" alt="Гостиная: диван, журнальные столики, шторы у большого окна" fetchpriority="high"></figure>
+        <figure class="slide"><img src="https://avatars.mds.yandex.net/get-altay/16368192/2a0000019b1642e9395aa86ad475495786a5/XXL" alt="Спальня со светлой отделкой и круглым зеркалом"></figure>
+        <figure class="slide"><img src="https://avatars.mds.yandex.net/get-altay/16470051/2a0000019b16428c81dabf75e8dbdc47fb9d/XXL" alt="Гостиная с диваном и двумя журнальными столиками"></figure>
+        <figure class="slide"><img src="https://avatars.mds.yandex.net/get-altay/19547275/2a0000019b1643318fd3a7795bb9e790fc6d/XXL" alt="Изголовье кровати, подвесной столик и синий пуф"></figure>
+        <figure class="slide"><img src="https://avatars.mds.yandex.net/get-altay/19541413/2a0000019b16427c2acc13e8d84d2dbf5322/XXL" alt="Прихожая с полкой и банкеткой"></figure>
+        <figure class="slide"><img src="https://avatars.mds.yandex.net/get-altay/16430504/2a0000019b16429ead95c60645e70adccf66/XXL" alt="Спальня: кровать с жёлтой подушкой и картины на стене"></figure>
+      </div>
+      <div class="stories" id="stories" role="tablist" aria-label="Фотографии интерьеров"></div>
+      <div class="hero-card">
+        <p class="up">Ул. Крыгина, 105/1, Владивосток</p>
+        <hr class="dash">
+        <span class="credit"><a href="tel:+79146813005" style="text-decoration:none">+7 (914) 681-30-05</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-label="Направления работы">
+  <div class="marquee-track up">
+    <span>Дизайн-проект</span><span>Планировка</span><span>Подбор материалов</span><span>Мебель и свет</span><span>Визуализация</span><span>Авторский надзор</span>
+    <span aria-hidden="true">Дизайн-проект</span><span aria-hidden="true">Планировка</span><span aria-hidden="true">Подбор материалов</span><span aria-hidden="true">Мебель и свет</span><span aria-hidden="true">Визуализация</span><span aria-hidden="true">Авторский надзор</span>
+  </div>
+</div>
+
+<section class="reveal">
+  <div class="wrap">
+    <h2 class="rv split">Это не просто ремонт.</h2>
+    <figure class="rv d1"><img src="https://avatars.mds.yandex.net/get-altay/16430504/2a0000019b16429ead95c60645e70adccf66/XXL" alt="Спальня: кровать с жёлтой подушкой, круглое зеркало и картины на стене" loading="lazy"></figure>
+    <p class="rv d2">Планировка, свет, цвет и мебель складываются в одно пространство. Агентство разрабатывает интерьер под ваш образ жизни и бюджет.</p>
+  </div>
+</section>
+
+<section class="block" id="services">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 class="split">Чем мы занимаемся</h2>
+    </div>
+    <div class="svc-grid rv d1" id="svcWrap">
+      <div class="scroll-strip" id="svcStrip">
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 44 44"><path d="M6 6h32v32H6z"/><path d="M6 20h14v18M28 6v14h10"/></svg></div>
+          <div><h3>Дизайн-проект интерьера</h3><p style="margin-top:14px">Концепция, стиль и полный комплект решений для вашего пространства.</p></div>
+        </article>
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 44 44"><path d="M6 38V10h20v10h12v18z"/><path d="M6 24h10M30 38V26"/></svg></div>
+          <div><h3>Планировочные решения</h3><p style="margin-top:14px">Продуманная расстановка зон, чтобы в квартире было удобно жить.</p></div>
+        </article>
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="15"/><path d="M22 7v30M7 22h30"/></svg></div>
+          <div><h3>Подбор материалов и отделки</h3><p style="margin-top:14px">Цвета, покрытия и фактуры, которые сочетаются между собой.</p></div>
+        </article>
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 44 44"><path d="M8 30h28v6H8zM12 30v-8a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v8M8 36v3M36 36v3"/></svg></div>
+          <div><h3>Мебель, свет и декор</h3><p style="margin-top:14px">Подбор мебели, освещения и текстиля под общую идею интерьера.</p></div>
+        </article>
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 44 44"><path d="M4 22s7-12 18-12 18 12 18 12-7 12-18 12S4 22 4 22z"/><circle cx="22" cy="22" r="5"/></svg></div>
+          <div><h3>Визуализация</h3><p style="margin-top:14px">Наглядные изображения будущего интерьера до начала работ.</p></div>
+        </article>
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 44 44"><path d="M8 38l10-22 8 8 10-16"/><path d="M8 38h30"/></svg></div>
+          <div><h3>Авторский надзор</h3><p style="margin-top:14px">Контроль того, чтобы проект воплотился так, как задумано.</p></div>
+        </article>
+      </div>
+      <div class="scroll-track" aria-hidden="true"><div class="scroll-thumb" id="svcThumb"></div></div>
+    </div>
+    <p class="svc-note">Перечень услуг составлен в общих словах. Точный состав работ уточняйте у агентства.</p>
+  </div>
+</section>
+
+<section class="block" id="gallery" style="background:var(--bg-alt);padding-top:100px">
+  <div class="wrap">
+    <div class="gallery-top">
+      <div class="sec-head rv"><h2 class="split">Фото интерьеров</h2></div>
+      <div class="stat rv d1"><b data-count="139">139</b><span class="up">фото в карточке на Яндекс Картах</span></div>
+    </div>
+    <div class="gal rv d1">
+      <div class="scroll-strip" id="galStrip">
+        <div class="shot"><img src="https://avatars.mds.yandex.net/get-altay/16368192/2a0000019b1642e9395aa86ad475495786a5/XXL" alt="Спальня со светлой отделкой и круглым зеркалом" loading="lazy" draggable="false"></div>
+        <div class="shot wide"><img src="https://avatars.mds.yandex.net/get-altay/16470051/2a0000019b16428c81dabf75e8dbdc47fb9d/XXL" alt="Гостиная с диваном и двумя журнальными столиками" loading="lazy" draggable="false"></div>
+        <div class="shot"><img src="https://avatars.mds.yandex.net/get-altay/19547275/2a0000019b1643318fd3a7795bb9e790fc6d/XXL" alt="Изголовье кровати, подвесной столик и синий пуф" loading="lazy" draggable="false"></div>
+        <div class="shot"><img src="https://avatars.mds.yandex.net/get-altay/19541413/2a0000019b16427c2acc13e8d84d2dbf5322/XXL" alt="Прихожая с полкой и банкеткой" loading="lazy" draggable="false"></div>
+        <div class="shot"><img src="https://avatars.mds.yandex.net/get-altay/19681410/2a0000019b164327a877e6a7945eda968a41/XXL" alt="Спальня: кровать, картины и шторы" loading="lazy" draggable="false"></div>
+      </div>
+      <div class="scroll-track" aria-hidden="true"><div class="scroll-thumb" id="galThumb"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block process" id="process" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="sec-head rv"><h2 class="split">Как проходит работа</h2></div>
+    <ol class="steps">
+      <li class="rv"><h3 class="split">Познакомиться</h3><p>Обсуждаем задачу, пожелания и бюджет, смотрим пространство.</p></li>
+      <li class="rv"><h3 class="split">Спланировать</h3><p>Предлагаем планировку и общую концепцию интерьера.</p></li>
+      <li class="rv"><h3 class="split">Спроектировать</h3><p>Готовим проект, подбираем материалы, мебель и освещение.</p></li>
+      <li class="rv"><h3 class="split">Воплотить</h3><p>Следим, чтобы результат соответствовал проекту.</p></li>
+    </ol>
+    <p class="svc-note">Этапы описаны в общем виде. Реальный порядок работы уточняйте у агентства.</p>
+  </div>
+</section>
+
+<section class="block" id="contacts" style="background:var(--bg-alt)">
+  <div class="wrap">
+    <div class="sec-head rv"><h2 class="split">Где нас найти</h2></div>
+    <div class="contact-grid">
+      <div class="contact-info rv">
+        <dl>
+          <div><dt class="up">Адрес</dt><dd>Ул. Крыгина, 105/1, Владивосток</dd></div>
+          <div><dt class="up">Телефон</dt><dd><a href="tel:+79146813005">+7 (914) 681-30-05</a></dd></div>
+          <div><dt class="up">Режим</dt><dd>Часы работы уточняйте по телефону</dd></div>
+        </dl>
+
+        <form class="lead" id="leadForm" name="booking" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="booking">
+          <p class="hp"><label>Не заполняйте: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field">
+            <label class="up" for="f-name">Имя</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label class="up" for="f-phone">Телефон</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7" required>
+            <small>Перезвоним, чтобы обсудить проект.</small>
+          </div>
+          <div class="field">
+            <label class="up" for="f-msg">О проекте</label>
+            <textarea id="f-msg" name="message" rows="3"></textarea>
+          </div>
+          <label class="consent"><input type="checkbox" name="consent" required><span>Согласен(на) на <a href="privacy.html">обработку персональных данных</a>.</span></label>
+          <div>
+            <button class="btn btn-fill up" type="submit" id="submitBtn">Отправить заявку</button>
+          </div>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="map-col rv d1">
+        <div class="map-frame">
+          <iframe src="https://yandex.ru/map-widget/v1/?ll=131.853505%2C43.082562&z=16&pt=131.853505,43.082562,pm2rdm" title="Первое агенство на карте: ул. Крыгина, 105/1, Владивосток" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <p class="map-caption">Карта не загрузилась? <a href="https://yandex.ru/maps/org/pervoye_agenstvo/20025065564/" target="_blank" rel="noopener">Открыть на Яндекс Картах</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand up"><svg><use href="#logo"/></svg><span>Первое агенство</span></div>
+      <nav class="foot-links up" aria-label="Нижнее меню">
+        <a href="#services">Услуги</a><a href="#gallery">Галерея</a><a href="#process">Работа</a><a href="#contacts">Контакты</a><a href="privacy.html">Политика конфиденциальности</a>
+      </nav>
+    </div>
+    <p class="disclaimer">
+      <span class="credit">Демо-версия</span>
+      Это демонстрационная концепция сайта, а не официальный сайт «Первого агенства». Агентство не заказывало и не согласовывало эту страницу. Название, адрес, телефон и фотографии взяты из открытой карточки организации на Яндекс Картах. Описания услуг и этапов работы составлены в общем виде и требуют проверки владельцем.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia('(hover:hover)').matches;
+  document.documentElement.classList.add('js-ready');
+
+  /* theme toggle with persistence */
+  var root = document.documentElement, toggle = document.getElementById('themeToggle');
+  function effective(){ return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
+  function paint(){ toggle.classList.toggle('is-dark', effective() === 'dark'); }
+  try { var saved = localStorage.getItem('pa-theme'); if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved); } catch(e){}
+  paint();
+  toggle.addEventListener('click', function(){
+    var next = effective() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('pa-theme', next); } catch(e){}
+    paint();
+  });
+
+  /* header scrolled state via IntersectionObserver sentinel */
+  var header = document.getElementById('siteHeader');
+  var sentinel = document.createElement('div');
+  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:12px;pointer-events:none';
+  document.body.prepend(sentinel);
+  new IntersectionObserver(function(en){ header.classList.toggle('is-scrolled', !en[0].isIntersecting); }).observe(sentinel);
+
+  /* in-view reveals */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, {threshold:.15, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  /* number counter */
+  var counter = document.querySelector('[data-count]');
+  if (counter && !reduce){
+    var target = +counter.getAttribute('data-count'); counter.textContent = '0';
+    new IntersectionObserver(function(en, ob){
+      if (!en[0].isIntersecting) return; ob.disconnect();
+      var t0 = performance.now();
+      (function step(t){
+        var p = Math.min(1, (t - t0) / 1400), eased = 1 - Math.pow(1 - p, 3);
+        counter.textContent = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(step);
+      })(t0);
+    }, {threshold:.6}).observe(counter);
+  }
+
+  /* scroll strips: themed track + drag to scroll */
+  function wireStrip(stripId, thumbId){
+    var strip = document.getElementById(stripId), thumb = document.getElementById(thumbId);
+    if (!strip || !thumb) return;
+    function update(){
+      var max = strip.scrollWidth - strip.clientWidth;
+      var ratio = max > 0 ? strip.scrollLeft / max : 0;
+      var trackW = thumb.parentElement.clientWidth;
+      var thumbW = Math.max(24, (strip.clientWidth / strip.scrollWidth) * trackW);
+      thumb.style.width = thumbW + 'px';
+      thumb.style.transform = 'translateX(' + (ratio * (trackW - thumbW)) + 'px)';
+    }
+    strip.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    window.addEventListener('load', update);
+    update();
+    var down = false, sx = 0, sl = 0, moved = false;
+    strip.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'touch') return;
+      down = true; moved = false; sx = e.clientX; sl = strip.scrollLeft;
+    });
+    window.addEventListener('pointermove', function(e){
+      if (!down) return;
+      var dx = e.clientX - sx; if (Math.abs(dx) > 3) moved = true;
+      strip.style.scrollSnapType = 'none';
+      strip.scrollLeft = sl - dx;
+    });
+    window.addEventListener('pointerup', function(){ down = false; strip.style.scrollSnapType = ''; });
+  }
+  wireStrip('svcStrip','svcThumb');
+  wireStrip('galStrip','galThumb');
+
+  /* spotlight + tilt cards */
+  if (!reduce && canHover){
+    var grid = document.getElementById('svcWrap');
+    document.querySelectorAll('.svc-grid .card').forEach(function(card){
+      card.addEventListener('pointermove', function(e){
+        var r = card.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+        card.style.setProperty('--mx', x + 'px'); card.style.setProperty('--my', y + 'px');
+        var rx = ((y / r.height) - .5) * -5, ry = ((x / r.width) - .5) * 5;
+        card.style.transform = 'perspective(700px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-3px)';
+        card.classList.add('is-hot'); grid.classList.add('is-active');
+      });
+      card.addEventListener('pointerleave', function(){ card.style.transform = ''; card.classList.remove('is-hot'); grid.classList.remove('is-active'); });
+    });
+  }
+
+  /* magnetic CTA (hero only) */
+  var cta = document.getElementById('heroCta');
+  if (cta && !reduce && canHover){
+    var px = 0, py = 0, pressed = false;
+    cta.addEventListener('pointermove', function(e){
+      var r = cta.getBoundingClientRect();
+      px = (e.clientX - r.left - r.width / 2) * .25; py = (e.clientY - r.top - r.height / 2) * .35;
+      cta.style.transform = 'translate(' + px + 'px,' + py + 'px)' + (pressed ? ' scale(.96)' : '');
+    });
+    cta.addEventListener('pointerdown', function(){ pressed = true; });
+    cta.addEventListener('pointerup', function(){ pressed = false; });
+    cta.addEventListener('pointerleave', function(){ pressed = false; cta.style.transform = ''; });
+  }
+
+  /* particle burst */
+  function burst(e, btn){
+    if (reduce) return;
+    var r = btn.getBoundingClientRect(), cx = (e.clientX || r.left + r.width / 2) - r.left, cy = (e.clientY || r.top + r.height / 2) - r.top;
+    for (var i = 0; i < 10; i++){
+      var p = document.createElement('span'); p.className = 'burst-dot';
+      p.style.left = cx + 'px'; p.style.top = cy + 'px';
+      var a = (Math.PI * 2 * i) / 10 + Math.random() * .4, d = 26 + Math.random() * 18;
+      p.style.setProperty('--dx', Math.cos(a) * d + 'px'); p.style.setProperty('--dy', Math.sin(a) * d + 'px');
+      btn.appendChild(p);
+      p.addEventListener('animationend', function(){ this.remove(); });
+    }
+  }
+  if (cta) cta.addEventListener('click', function(e){ burst(e, cta); });
+
+  /* hero slider: auto-advancing wipe with slow zoom, story-style progress */
+  (function(){
+    var box = document.getElementById('heroSlider'); if (!box) return;
+    var slides = Array.prototype.slice.call(box.querySelectorAll('.slide'));
+    var storiesEl = document.getElementById('stories');
+    var INTERVAL = 5200, cur = 0, z = 1, timer = null, fills = [], fillAnim = null, zoomAnim = null, paused = false;
+    slides.forEach(function(s, i){
+      var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Фото ' + (i + 1));
+      var f = document.createElement('i'); b.appendChild(f); storiesEl.appendChild(b); fills.push(f);
+      b.addEventListener('click', function(){ go(i, true); });
+    });
+    function setFills(n){
+      fills.forEach(function(f, k){ f.getAnimations().forEach(function(a){ a.cancel(); }); f.style.transform = k < n ? 'scaleX(1)' : 'scaleX(0)'; });
+    }
+    function arm(n){
+      if (reduce){ clearTimeout(timer); timer = setTimeout(function(){ go((n + 1) % slides.length); }, INTERVAL + 1500); fills[n].style.transform = 'scaleX(1)'; return; }
+      fillAnim = fills[n].animate([{transform:'scaleX(0)'},{transform:'scaleX(1)'}], {duration: INTERVAL, easing:'linear', fill:'forwards'});
+      var img = slides[n].querySelector('img');
+      zoomAnim = img.animate([{transform:'scale(1.02) translate(0,0)'},{transform:'scale(1.12) translate(-1.2%,-1%)'}], {duration: INTERVAL + 1400, easing:'linear', fill:'forwards'});
+      if (paused){ fillAnim.pause(); zoomAnim.pause(); }
+      fillAnim.onfinish = function(){ go((n + 1) % slides.length); };
+    }
+    function go(n, manual){
+      if (n === cur && !manual && slides.length < 2) return;
+      var next = slides[n];
+      z++; next.style.zIndex = z;
+      if (fillAnim) fillAnim.onfinish = null;
+      setFills(n);
+      if (reduce){ next.style.clipPath = 'inset(0)'; cur = n; arm(n); return; }
+      var wipe = next.animate([{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(0% 0 0 0)'}], {duration: 1100, easing:'cubic-bezier(.77,0,.18,1)', fill:'both'});
+      wipe.onfinish = function(){ next.style.clipPath = 'inset(0)'; wipe.cancel(); };
+      cur = n; arm(n);
+    }
+    box.addEventListener('pointerenter', function(){ paused = true; if (fillAnim) fillAnim.pause(); if (zoomAnim) zoomAnim.pause(); });
+    box.addEventListener('pointerleave', function(){ paused = false; if (fillAnim) fillAnim.play(); if (zoomAnim) zoomAnim.play(); });
+    slides[0].style.clipPath = 'inset(0)';
+    arm(0);
+  })();
+
+  /* split text into masked letters */
+  document.querySelectorAll('.split').forEach(function(el){
+    if (reduce) return;
+    var text = el.textContent.trim(), i = 0;
+    el.setAttribute('aria-label', text); el.textContent = '';
+    text.split(/\s+/).forEach(function(word, wi, arr){
+      var w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden', 'true');
+      var perLetter = el.hasAttribute('data-hero');
+      if (perLetter){
+        word.split('').forEach(function(ch){ var l = document.createElement('span'); l.className = 'l'; l.style.setProperty('--i', i++); l.textContent = ch; w.appendChild(l); });
+      } else {
+        var l = document.createElement('span'); l.className = 'l'; l.style.setProperty('--i', i++); l.textContent = word; w.appendChild(l);
+      }
+      el.appendChild(w);
+      if (wi < arr.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+  });
+  document.querySelectorAll('.split:not([data-hero])').forEach(function(el){ io.observe(el); });
+  document.querySelectorAll('.steps li').forEach(function(el){ io.observe(el); });
+
+  /* preloader then hero entrance */
+  (function(){
+    var d = document.documentElement, loader = document.getElementById('loader'), pct = document.getElementById('pct');
+    if (!d.classList.contains('pre')){ d.classList.add('go'); if (loader) loader.remove(); return; }
+    var t0 = performance.now(), MIN = 2100, loaded = document.readyState === 'complete', finished = false;
+    window.addEventListener('load', function(){ loaded = true; });
+    (function tick(t){
+      var p = Math.min(1, (t - t0) / MIN), eased = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      var shown = (!loaded && p >= 1) ? 99 : Math.round(eased * 100);
+      pct.textContent = shown;
+      if (p >= 1 && (loaded || t - t0 > 6000)){ finish(); return; }
+      requestAnimationFrame(tick);
+    })(t0);
+    function finish(){
+      if (finished) return; finished = true; pct.textContent = '100';
+      setTimeout(function(){
+        loader.classList.add('done');
+        setTimeout(function(){ d.classList.remove('pre'); d.classList.add('go'); }, 350);
+        setTimeout(function(){ loader.remove(); }, 1200);
+      }, 250);
+    }
+    setTimeout(finish, 9000);
+  })();
+
+  /* one rAF loop: scroll progress in %, marquee speed by scroll velocity, cursor glow and blueprint parallax */
+  (function(){
+    var num = document.getElementById('progNum'), fill = document.getElementById('progFill');
+    var track = document.querySelector('.marquee-track'), mqAnim = null, rate = 1, lastY = window.scrollY, shown = -1;
+    var hero = document.getElementById('hero'), glow = document.getElementById('heroGlow'), bp = document.getElementById('heroBp');
+    var tx = .3, ty = .4, cx = .3, cy = .4, hoverHero = false;
+    if (track && track.getAnimations) mqAnim = track.getAnimations()[0] || null;
+    if (hero && canHover && !reduce){
+      hero.addEventListener('pointermove', function(e){ var r = hero.getBoundingClientRect(); tx = (e.clientX - r.left) / r.width; ty = (e.clientY - r.top) / r.height; hoverHero = true; });
+      hero.addEventListener('pointerleave', function(){ hoverHero = false; });
+    }
+    function frame(){
+      var max = document.documentElement.scrollHeight - window.innerHeight, y = window.scrollY;
+      var p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0, v = Math.round(p * 100);
+      if (v !== shown){ shown = v; num.textContent = v + '%'; fill.style.setProperty('--p', p); }
+      if (mqAnim && !reduce){
+        var target = 1 + Math.min(Math.abs(y - lastY) * .35, 9);
+        rate += (target - rate) * .08;
+        if (Math.abs(rate - 1) > .01 || Math.abs(target - 1) > .01) mqAnim.updatePlaybackRate(rate);
+      }
+      lastY = y;
+      if (glow && canHover && !reduce){
+        cx += (tx - cx) * .08; cy += (ty - cy) * .08;
+        glow.style.setProperty('--gx', (cx * 100) + '%'); glow.style.setProperty('--gy', (cy * 100) + '%');
+        if (bp){ bp.style.setProperty('--px', ((cx - .5) * -36) + 'px'); bp.style.setProperty('--py', ((cy - .5) * -36) + 'px'); }
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+
+  /* lead form: real submission, no fake success */
+  var form = document.getElementById('leadForm'), status = document.getElementById('formStatus'), submitBtn = document.getElementById('submitBtn');
+  function enc(fd){
+    var parts = [];
+    fd.forEach(function(v, k){ parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(v)); });
+    return parts.join('&');
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    status.className = 'form-status'; status.textContent = '';
+    var name = form.elements['name'].value.trim(), phone = form.elements['phone'].value.trim();
+    if (!name || phone.replace(/\D/g, '').length < 10){ status.className = 'form-status err'; status.textContent = 'Укажите имя и телефон полностью.'; return; }
+    if (!form.elements['consent'].checked){ status.className = 'form-status err'; status.textContent = 'Нужно согласие на обработку персональных данных.'; return; }
+    submitBtn.disabled = true; submitBtn.style.opacity = '.6';
+    burst(e.submitter ? {clientX:0,clientY:0} : {}, submitBtn);
+    fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: enc(new FormData(form))})
+      .then(function(res){
+        if (res.ok){ status.className = 'form-status ok'; status.textContent = 'Заявка отправлена. Мы свяжемся с вами по указанному телефону.'; form.reset(); }
+        else { throw new Error('bad status ' + res.status); }
+      })
+      .catch(function(){ status.className = 'form-status err'; status.textContent = 'Не удалось отправить заявку. Позвоните нам: +7 (914) 681-30-05.'; })
+      .finally(function(){ submitBtn.disabled = false; submitBtn.style.opacity = ''; });
+  });
+})();
+</script>
+</body>
+</html>
